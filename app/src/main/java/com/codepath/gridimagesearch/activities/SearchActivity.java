@@ -14,6 +14,7 @@ import android.widget.GridView;
 
 import com.codepath.gridimagesearch.R;
 import com.codepath.gridimagesearch.adapters.ImageResultsAdapter;
+import com.codepath.gridimagesearch.listeners.EndlessScrollListener;
 import com.codepath.gridimagesearch.models.ImageResult;
 import com.codepath.gridimagesearch.models.SettingsResult;
 import com.loopj.android.http.AsyncHttpClient;
@@ -54,7 +55,19 @@ public class SearchActivity extends ActionBarActivity implements SettingsFragmen
         //3. Link the adapter to the adapterview (gridview)
         gvResults.setAdapter(aImageResults);
 
-        //settingsResult = new SettingsResult();
+        //infinite scroll
+        GridView lvItems = (GridView) findViewById(R.id.gvResults);
+        // Attach the listener to the AdapterView onCreate
+        lvItems.setOnScrollListener(new EndlessScrollListener() {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount) {
+                // Triggered only when new data needs to be appended to the list
+                // Add whatever code is needed to append new items to your AdapterView
+                customLoadMoreDataFromApi(page);
+                // or customLoadMoreDataFromApi(totalItemsCount);
+            }
+        });
+
     }
 
     private void setupViews(){
@@ -192,4 +205,10 @@ public class SearchActivity extends ActionBarActivity implements SettingsFragmen
         this.settingsResult = settingsResult;
     }
 
+    // Append more data into the adapter - for infinitescroll
+    public void customLoadMoreDataFromApi(int offset) {
+        // This method probably sends out a network request and appends new data items to your adapter.
+        // Use the offset value and add it as a parameter to your API request to retrieve paginated data.
+        // Deserialize API response and then construct new objects to append to the adapter
+    }
 }
