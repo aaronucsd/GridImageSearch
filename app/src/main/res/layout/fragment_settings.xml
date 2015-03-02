@@ -1,0 +1,114 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp"
+    tools:context="com.codepath.gridimagesearch.activities.SettingsFragment">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Advanced search options"
+        android:id="@+id/tvTitle"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Image Size"
+        android:id="@+id/tvSize"
+        android:layout_below="@+id/tvTitle"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sSize"
+        android:layout_below="@+id/tvTitle"
+        android:layout_toRightOf="@+id/tvSize"
+        android:layout_toEndOf="@+id/tvSize"
+        android:entries="@array/size_arrays"
+        android:prompt="@string/size_prompt"
+        android:spinnerMode="dropdown" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Color Filter"
+        android:id="@+id/tvColor"
+        android:layout_below="@+id/sSize"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sColor"
+        android:layout_below="@+id/sSize"
+        android:layout_toRightOf="@+id/tvSize"
+        android:layout_toEndOf="@+id/tvSize"
+        android:entries="@array/color_arrays"
+        android:prompt="@string/color_prompt"
+        android:spinnerMode="dropdown" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Image Type"
+        android:id="@+id/tvType"
+        android:layout_below="@+id/sColor"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sType"
+        android:layout_below="@+id/sColor"
+        android:layout_toRightOf="@+id/tvColor"
+        android:layout_toEndOf="@+id/tvColor"
+        android:entries="@array/type_arrays"
+        android:prompt="@string/type_prompt"
+        android:spinnerMode="dropdown" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Site Filter"
+        android:id="@+id/tvSite"
+        android:layout_below="@+id/sType"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/etSite"
+        android:layout_below="@+id/sType"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/tvSite"
+        android:hint="site url" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:id="@+id/btnSave"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="81dp"
+        android:imeOptions="actionDone"
+        android:onClick="saveSettings"
+        />
+
+
+</RelativeLayout>
