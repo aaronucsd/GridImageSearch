@@ -14,6 +14,7 @@
 
     <string name="size_prompt">Choose Size</string>
     <string-array name="size_arrays">
+        <item>any</item>
         <item>small</item>
         <item>medium</item>
         <item>large</item>
@@ -22,6 +23,7 @@
 
     <string name="color_prompt">Choose Color</string>
     <string-array name="color_arrays">
+        <item>any</item>
         <item>black</item>
         <item>blue</item>
         <item>brown</item>
@@ -31,6 +33,7 @@
 
     <string name="type_prompt">Choose Type</string>
     <string-array name="type_arrays">
+        <item>any</item>
         <item>faces</item>
         <item>photo</item>
         <item>clipart</item>

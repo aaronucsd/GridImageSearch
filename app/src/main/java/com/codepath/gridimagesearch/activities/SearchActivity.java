@@ -122,14 +122,14 @@ public class SearchActivity extends ActionBarActivity implements SettingsFragmen
         String _site = "";
 
         if(this.settingsResult != null) {
-            if(settingsResult.size != null && !settingsResult.size.isEmpty()){
+            if(settingsResult.size != null && !settingsResult.size.isEmpty() && settingsResult.size != "any"){
                 //Toast.makeText(this, "settingsResult.size: " + settingsResult.size, Toast.LENGTH_SHORT).show();
                 _size = "&imgsz="+settingsResult.size;
             }
-            if(settingsResult.color != null && !settingsResult.color.isEmpty()){
+            if(settingsResult.color != null && !settingsResult.color.isEmpty() && settingsResult.color != "any"){
                 _color = "&imgcolor="+settingsResult.color;
             }
-            if(settingsResult.type != null && !settingsResult.type.isEmpty()){
+            if(settingsResult.type != null && !settingsResult.type.isEmpty() && settingsResult.type != "any"){
                 _type = "&imgtype="+settingsResult.type;
             }
             if(settingsResult.site != null && !settingsResult.site.isEmpty()){
@@ -144,6 +144,7 @@ public class SearchActivity extends ActionBarActivity implements SettingsFragmen
                 _type+
                 _site+
                 "&q="+query;
+        Log.d("INFO", searchUrl);
         //due to async call we will get the callback on success for each
         client.get(searchUrl, new JsonHttpResponseHandler(){
             @Override
