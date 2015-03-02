@@ -86,6 +86,13 @@ public class SettingsFragment extends DialogFragment implements TextView.OnEdito
             }
         });
 
+        Button btnCancel = (Button) view.findViewById(R.id.btnCancel);
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
         return view;
     }
 
