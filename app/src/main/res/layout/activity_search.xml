@@ -23,7 +23,6 @@
         android:layout_height="wrap_content"
         android:text="@string/search_label"
         android:id="@+id/btnSearch"
-        android:onClick="onImageSearch"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />

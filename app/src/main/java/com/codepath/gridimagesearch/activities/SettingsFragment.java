@@ -77,7 +77,6 @@ public class SettingsFragment extends DialogFragment implements TextView.OnEdito
                 settingsResult.size = sSize.getSelectedItem().toString();
                 settingsResult.color = sColor.getSelectedItem().toString();
                 settingsResult.type = sType.getSelectedItem().toString();
-
                 settingsResult.site = etSite.getText().toString();
 
                 // Return input text to activity

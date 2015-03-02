@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 
@@ -35,6 +36,7 @@ public class SearchActivity extends ActionBarActivity implements SettingsFragmen
     private ArrayList<ImageResult> imageResults;
     private ImageResultsAdapter aImageResults;
     private SettingsResult settingsResult;
+    private int rsz = 8;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +70,16 @@ public class SearchActivity extends ActionBarActivity implements SettingsFragmen
             }
         });
 
+
+        //onclick for the search button
+        Button btnSave = (Button) findViewById(R.id.btnSearch);
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                aImageResults.clear();
+                onImageSearch(0);//init for first page load
+            }
+        });
     }
 
     private void setupViews(){
@@ -103,7 +115,7 @@ public class SearchActivity extends ActionBarActivity implements SettingsFragmen
     }
 
     // Fired whenever the button is pressed (android:onclic property)
-    public void onImageSearch(View v){
+    public void onImageSearch( int startPos){
         //Grab hold of the query from search input
         String query = etQuery.getText().toString();
         //Toast.makeText(this, "Search for: "+query, Toast.LENGTH_SHORT).show();
@@ -120,6 +132,7 @@ public class SearchActivity extends ActionBarActivity implements SettingsFragmen
         String _color = "";
         String _type = "";
         String _site = "";
+        String _start="&start="+startPos;
 
         if(this.settingsResult != null) {
             if(settingsResult.size != null && !settingsResult.size.isEmpty() && settingsResult.size != "any"){
@@ -138,12 +151,17 @@ public class SearchActivity extends ActionBarActivity implements SettingsFragmen
             }
         }
 
-        String searchUrl = "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&rsz=8"+
+
+        String searchUrl = "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&rsz="+rsz+
                 _size+
                 _color+
                 _type+
                 _site+
+                _start+
                 "&q="+query;
+
+        final int innerStartPos = startPos;
+
         Log.d("INFO", searchUrl);
         //due to async call we will get the callback on success for each
         client.get(searchUrl, new JsonHttpResponseHandler(){
@@ -162,7 +180,9 @@ public class SearchActivity extends ActionBarActivity implements SettingsFragmen
                     //notify the adapter there is a change in the arrayList (data source)
                     // Make changes to the adapater it will modify the data source (arrayList) - they are linked
                     //replaces the lines above for arraylist directly, and use adapter's version of those methods.
-                    aImageResults.clear();
+                    if(innerStartPos==0) {
+                        aImageResults.clear();
+                    }
                     aImageResults.addAll(ImageResult.fromJSONArray(imageResultJson));
 
                 } catch (JSONException e) {
@@ -211,5 +231,7 @@ public class SearchActivity extends ActionBarActivity implements SettingsFragmen
         // This method probably sends out a network request and appends new data items to your adapter.
         // Use the offset value and add it as a parameter to your API request to retrieve paginated data.
         // Deserialize API response and then construct new objects to append to the adapter
+        int startPos = (offset-1)*rsz;
+        onImageSearch(startPos);
     }
 }
