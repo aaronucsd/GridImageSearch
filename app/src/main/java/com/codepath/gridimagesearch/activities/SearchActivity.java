@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageButton;
 
 import com.codepath.gridimagesearch.R;
 import com.codepath.gridimagesearch.adapters.ImageResultsAdapter;
@@ -76,6 +77,18 @@ public class SearchActivity extends ActionBarActivity implements SettingsFragmen
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                aImageResults.clear();
+                onImageSearch(0);//init for first page load
+            }
+        });
+
+        //onclick for the reset button
+        ImageButton ibReset = (ImageButton) findViewById(R.id.ibReset);
+        ibReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //reset the query text input
+                etQuery.setText("");
                 aImageResults.clear();
                 onImageSearch(0);//init for first page load
             }

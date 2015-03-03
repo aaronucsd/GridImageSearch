@@ -12,10 +12,10 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/btnSearch"
-        android:layout_toStartOf="@+id/btnSearch"
+        android:layout_toStartOf="@+id/imageButton"
         android:layout_alignBottom="@+id/btnSearch"
-        android:hint="@string/search_prompt" />
+        android:hint="@string/search_prompt"
+        android:layout_toLeftOf="@+id/imageButton" />
 
 
     <Button
@@ -38,5 +38,14 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ibReset"
+        android:src="@drawable/ic_reset"
+        android:layout_above="@+id/gvResults"
+        android:layout_toLeftOf="@+id/btnSearch"
+        android:layout_toStartOf="@+id/btnSearch" />
 
 </RelativeLayout>
